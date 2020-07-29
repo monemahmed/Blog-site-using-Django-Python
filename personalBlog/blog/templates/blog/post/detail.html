@@ -1,0 +1,9 @@
+{%extends 'blog/base.html'%} {%load static%} {% block title %}{{post.title}}
+{%endblock%} {% block content %}
+<div class="detail-post">
+  <h1 class="post-title">{{post.title}}</h1>
+  <h2 class="post-author">{{post.author}}</h2>
+  <p class="post-date">{{post.publish}}</p>
+  <p class="post-body">{{post.body}}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+html,
+body {
+  padding: 0;
+}
+
+.pagination{
+  margin:30px;
+  color: #fff;
+}
+#container {
+  box-sizing: border-box;
+  background-color: rgba(0, 50, 106, 0.8);
+  width: 100%;
+  margin: 0;
+  padding: 2%;
+  height: 20vh;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#sidebar a {
+  text-decoration: none;
+}
+#sidebar h2 {
+  color: #d2ff07;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 40px;
+  margin: 0;
+}
+#sidebar p {
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  margin: 0;
+}
+
+#sidebar {
+  margin-left: 3%;
+}
+
+#content {
+  position: absolute;
+  top: 20vh;
+  left: 0px;
+  box-sizing: border-box;
+  background-color: rgba(26, 58, 88, 0.96);
+  width: 100%;
+  margin: 0px;
+  padding: 2%;
+  z-index: -1;
+}
+.singlepost {
+  color: #fff;
+  margin: 1.8rem;
+  background-color: rgba(26, 58, 88);
+  padding: 20px;
+}
+.singlepost a {
+  text-decoration: none;
+}
+.singlepost h1,
+.post-title {
+  color: #f0bd06;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.singlepost .publish-info {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  color: rgb(216, 209, 209);
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.singlepost .trailer,
+.post-body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.25rem;
+  text-align: justify;
+}
+.post-author,
+.post-date {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  color: #d2ff07;
+  text-align: left;
+  font-size: 1.2rem;
+  margin: 0px;
+}
+.post-title {
+  font-size: 2rem;
+}
+.detail-post {
+  color: #fff;
+  padding: 20px;
+  margin: 20px;
+  margin-top: 0px;
+}
+.post-date {
+  color: rgb(202, 197, 197);
+  font-size: 0.8rem;
+}

@@ -1,0 +1,22 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="{%static 'css/blog.css'%}" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <a href="{%url 'blog:post_list'%}"><h2>MNM Speaking</h2></a>
+
+        <p>What I Think, Not What I Do</p>
+      </div>
+    </div>
+    <div id="content">
+      {%block content%} {%endblock%}
+    </div>
+  </body>
+</html>

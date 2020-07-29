@@ -1,0 +1,23 @@
+{%extends 'blog/base.html'%}{%load static%} {%block title%} MNM
+Speaking{%endblock%} {% block content %} {% for post in posts %}
+<div class="singlepost">
+  <a href="{{post.get_absolute_url}}">
+    <h1>{{post.title}}</h1>
+  </a>
+  <p class="publish-info">Published {{post.publish}} by {{post.author}}</p>
+  <p class="trailer">{{post.body|truncatewords:30}}</p>
+</div>
+{% endfor %}
+<div class="pagination">
+  <form action="{%url 'blog:post_list'%}" method="GET">
+    {% if page_obj.has_previous %}
+
+    <button name='page' value={{page_obj.previous_page_number}}>Previous</button>
+    {% endif %}
+
+    page {{page_obj.number}} of {{page_obj.paginator.num_pages}} {% if page_obj.has_next %}
+    <button name='page' value={{page_obj.next_page_number}}>Next</button>
+    {% endif %}
+  </form>
+</div>
+{% endblock %}
