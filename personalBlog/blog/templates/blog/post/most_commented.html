@@ -1,0 +1,10 @@
+<h3>Most Discussed Posts</h3>
+<ul>
+    {%for cp in commented_post%}
+    <li>
+        <a href="{{ cp.get_absolute_url}}">
+            {{cp.title}}
+        </a>
+    </li>
+    {%endfor%}
+</ul>

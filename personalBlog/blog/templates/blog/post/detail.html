@@ -1,9 +1,92 @@
-{%extends 'blog/base.html'%} {%load static%} {% block title %}{{post.title}}
+{%extends 'blog/base.html'%}
+{%load blog_tags%}
+
+{%load static%} {% block title %}{{post.title}}
 {%endblock%} {% block content %}
 <div class="detail-post">
   <h1 class="post-title">{{post.title}}</h1>
   <h2 class="post-author">{{post.author}}</h2>
+
   <p class="post-date">{{post.publish}}</p>
-  <p class="post-body">{{post.body}}</p>
+  <p class="post-tag">Tags: {%for tag in post.tags.all%}
+    <a href="{%url 'blog:post_list_by_tag_name' tag.slug%}"> {{tag.name}} </a>
+    {%if not forloop.last%},{%endif%}
+    {%endfor%} </p>
+  <div id="share"><a href="{%url 'blog:post_share' post.id %}"><i class="fas fa-share-alt"></i></a></div>
+  <p class="post-body">{{post.body|markdown}}</p>
+
 </div>
+
+
+
+
+
+<div class="comment_box">
+  <form action="{%url 'blog:post_detail' post.slug%}" method="POST">
+    {%csrf_token%}
+
+    {%if form.non_field.errors%}
+    <div class="errors">
+      <ul>
+        {%for error in form.non_field.errors%}
+        <li>{{error}}</li>
+        {%endfor%}
+      </ul>
+    </div>
+    {%endif%}
+
+    {%for hidden_field in form.hidden_fields%}
+
+    {%if hidden_field.errors%}
+    <div class="errors">
+      <ul>
+        {%for error in hidden_field.errors.errors%}
+        <li>(Hidden Field {{hidden_field.name}}) {{error}}</li>
+        {%endfor%}
+      </ul>
+    </div>
+    {%endif%}
+    {{hidden_field}}
+    {%endfor%}
+    <div class="inlineinputs">
+      <div id="comment_name">
+        <p class="label"> {{form.name.label_tag}}
+        </p>
+        {{form.name}}
+      </div>
+      <div id="comment_mail">
+        <p class="label"> {{form.mail.label_tag}}
+        </p>
+        {{form.mail}}
+      </div>
+    </div>
+
+    <div id="comment_body">
+      {{form.body}}
+    </div>
+    <input type="submit" id='post_comment' value='POST'>
+  </form>
+</div>
+<div class="comment_lists">
+  {%for comment in comments%}
+  <div class="single_comment">
+    <h3 class="post-author">{{comment.name}}</h3>
+    <p class="post-date">{{comment.created}}</p>
+    <p class="post-body">{{comment.body}}</p>
+  </div>
+  {%endfor%}
+</div>
+<h2 id="related_declare">Similar Posts</h2>
+
+<div class="similar">
+  {%for s in similar%}
+  <div class="singlesim"><a href="{{s.get_absolute_url}}">
+      <h1>{{s.title}}</h1>
+    </a>
+    <p class="publish-info">Published {{s.publish}} by {{s.author}}</p>
+    <p class="trailer">{{s.body|truncatewords:30}}</p>
+  </div>
+  {%endfor%}
+</div>
+
 {% endblock %}

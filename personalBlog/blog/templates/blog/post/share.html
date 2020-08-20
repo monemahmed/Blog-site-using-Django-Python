@@ -3,16 +3,71 @@
 {% block title %}Share a post{% endblock %}
 {% block content %}
 {% if sent %}
-<h1>E-mail successfully sent</h1>
-<p>
-    "{{ post.title }}" was successfully sent to {{form.cleaned_data.to }}.
+<p class='post-title'>
+    {{ post.title }} <span>was successfully sent to</span> {{form.cleaned_data.to }}.
 </p>
 {% else %}
-<h1>Share "{{ post.title }}" by e-mail</h1>
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <input type="submit" value="Send e-mail">
-</form>
+<h1 class='post-title'> <span>Share</span> {{ post.title }}</h1>
+
+<div class="shareform">
+    <form method="post">
+        {% csrf_token %}
+
+
+        {%if form.non_field.errors%}
+        <div class="errors">
+            <ul>
+                {%for error in form.non_field.errors%}
+                <li>{{error}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+        {%endif%}
+
+        {%for hidden_field in form.hidden_fields%}
+
+        {%if hidden_field.errors%}
+        <div class="errors">
+            <ul>
+                {%for error in hidden_field.errors.errors%}
+                <li>(Hidden Field {{hidden_field.name}}) {{error}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+        {%endif%}
+        {{hidden_field}}
+        {%endfor%}
+        <div id="share_name">
+            <p class="label"> {{form.name.label_tag}}
+            </p>
+            {{form.name}}
+        </div>
+        <div class="inlineinputshare">
+
+            <div id="share_email">
+                <p class="label"> {{form.email.label_tag}}
+                </p>
+                {{form.email}}
+            </div>
+
+            <div id="share_to_email">
+                <p class="label"> {{form.to.label_tag}}
+                </p>
+                {{form.to}}
+            </div>
+        </div>
+
+        <div id="share_comment">
+            <p class="label"> {{form.comment.label_tag}}
+            </p>
+            {{form.comment}}
+        </div>
+        <button type="submit">Send</button>
+    </form>
+</div>
 {% endif %}
+
+
+
+
 {% endblock %}

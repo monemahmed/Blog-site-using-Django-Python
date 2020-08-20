@@ -14,3 +14,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'mail', 'body')
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['class'] = 'inline_field'
+        self.fields['mail'].widget.attrs['class'] = 'inline_field'
+        self.fields['body'].widget.attrs['class'] = 'block_field'

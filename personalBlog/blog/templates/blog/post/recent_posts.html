@@ -1,0 +1,10 @@
+<h3>Most Recent Posts</h3>
+<ul>
+    {%for recent in recent_posts%}
+    <li>
+        <a href="{{ recent.get_absolute_url}}">
+            {{recent.title}}
+        </a>
+    </li>
+    {%endfor%}
+</ul>
