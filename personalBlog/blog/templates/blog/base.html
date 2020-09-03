@@ -25,6 +25,9 @@
     {%block content%} {%endblock%}
   </div>
   <div id="besidebar">
+    <p class="recents">
+      <a href="{% url "blog:post_feed" %}">Subscribe RSS feed</a>
+    </p>
     <div class="recents"> {%most_recent 5%}</div>
 
     <div class="commenteds"> {%most_commented_posts 5%}</div>
